@@ -2,111 +2,87 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 
 const statsOperation = [
-  { value: "12+", unit: "Years", label: "Longest Client Tenure" },
-  { value: "30%", unit: "", label: "Increase in Workforce Production" },
-  { value: "60%", unit: "", label: "Faster Time to Proficiency" },
+  { value: "12+ Years", label: "Longest Client Tenure" },
+  { value: "30%", label: "Increase in Workforce Productivity" },
+  { value: "60%", label: "Faster Time to Proficiency" },
 ];
 
 const statsDelivery = [
-  { value: "25%", unit: "", label: "Retail Ramp Scale in 6 Weeks" },
-  { value: "30%", unit: "", label: "Booking Conversion Lift" },
-  { value: "30%", unit: "", label: "Churn Reduction" },
+  { value: "25%", label: "Retail Ramp Scale in 4 Weeks" },
+  { value: "30%", label: "Booking Conversion Lift" },
+  { value: "30%", label: "Churn Reduction" },
 ];
 
-function StatItem({
-  stat,
-  index,
-  inView,
-}: {
-  stat: (typeof statsOperation)[0];
-  index: number;
-  inView: boolean;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="border-l-2 border-brand-blue pl-6 md:pl-8"
-    >
-      <p className="text-4xl font-extrabold text-foreground md:text-5xl lg:text-6xl">
-        {stat.value}
-        {stat.unit && (
-          <span className="ml-1 text-2xl font-bold md:text-3xl">
-            {stat.unit}
-          </span>
-        )}
-      </p>
-      <p className="mt-2 text-sm font-medium text-muted-foreground md:text-base">
-        {stat.label}
-      </p>
-    </motion.div>
-  );
-}
-
+/**
+ * Stats section — matches mockup:
+ * - White background
+ * - "Performance, Measured" eyebrow
+ * - Two groups: "Inside our Operation" + "What We Deliver"
+ * - Large bold stat values, small labels below
+ * - 3-column grid per group
+ */
 export function StatsSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative overflow-hidden section">
-      {/* Wave graphic */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image
-          src="/images/home/proven-outcomes-wave.png"
-          alt=""
-          fill
-          className="object-cover opacity-10"
-          sizes="100vw"
-        />
-      </div>
+    <section ref={ref} className="bg-white px-[5%] py-16 md:py-24 lg:py-28">
+      <div className="container mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="mb-10"
+        >
+          <p className="mb-2 text-sm font-medium text-muted-foreground">Performance, Measured</p>
+          <h2 className="text-3xl font-bold text-foreground md:text-4xl">Inside our Operation</h2>
+        </motion.div>
 
-      <div className="container relative z-10">
-        {/* Inside our Operation */}
-        <div className="mb-16 md:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="mb-10"
-          >
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-blue">
-              Performance, Measured
-            </p>
-            <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-              Inside our Operation
-            </h2>
-          </motion.div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:gap-10">
-            {statsOperation.map((stat, i) => (
-              <StatItem key={stat.label} stat={stat} index={i} inView={inView} />
-            ))}
-          </div>
+        {/* Operation stats */}
+        <div className="mb-14 grid grid-cols-1 gap-8 sm:grid-cols-3 md:gap-10">
+          {statsOperation.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.1, duration: 0.4 }}
+            >
+              <p className="text-4xl font-bold text-brand-blue md:text-5xl lg:text-6xl">
+                {stat.value}
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* What We Deliver */}
-        <div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mb-10"
-          >
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-blue">
-              Performance, Measured
-            </p>
-            <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-              What We Deliver
-            </h2>
-          </motion.div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:gap-10">
-            {statsDelivery.map((stat, i) => (
-              <StatItem key={stat.label} stat={stat} index={i + 3} inView={inView} />
-            ))}
-          </div>
+        {/* Delivery stats header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mb-10"
+        >
+          <p className="mb-2 text-sm font-medium text-muted-foreground">Performance, Measured</p>
+          <h2 className="text-3xl font-bold text-foreground md:text-4xl">What We Deliver</h2>
+        </motion.div>
+
+        {/* Delivery stats */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:gap-10">
+          {statsDelivery.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+            >
+              <p className="text-4xl font-bold text-brand-blue md:text-5xl lg:text-6xl">
+                {stat.value}
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
