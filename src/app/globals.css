@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   itelligenceCX Brand Design Tokens
+   Source: itelligence CX-Brand Sheet v3
+   ═══════════════════════════════════════════════════════════ */
+
+@theme inline {
+  /* ─── Primary Colors ─── */
+  --color-brand-blue: #036fa7;
+  --color-brand-gold: #e3c353;
+
+  /* ─── Secondary Colors ─── */
+  --color-secondary-blue: #1c8bcb;
+  --color-secondary-sky: #9adbf9;
+  --color-secondary-red: #f04b44;
+  --color-secondary-cyan: #0bc0f1;
+
+  /* ─── Grayscale ─── */
+  --color-gray-900: #000000;
+  --color-gray-850: #161b1e;
+  --color-gray-800: #1b2227;
+  --color-gray-700: #475159;
+  --color-gray-600: #5c6369;
+  --color-gray-500: #606a73;
+  --color-gray-400: #9aa0a6;
+  --color-gray-300: #c3c6c8;
+  --color-gray-100: #eceeef;
+  --color-gray-0: #ffffff;
+
+  /* ─── Semantic aliases ─── */
+  --color-background: var(--color-gray-0);
+  --color-foreground: var(--color-gray-850);
+  --color-muted: var(--color-gray-100);
+  --color-muted-foreground: var(--color-gray-600);
+  --color-accent: var(--color-brand-blue);
+  --color-accent-foreground: var(--color-gray-0);
+
+  /* ─── Typography ─── */
+  --font-sans: var(--font-plus-jakarta);
+  --font-heading: var(--font-plus-jakarta);
+
+  /* ─── Spacing / Layout ─── */
+  --section-padding-x: 5%;
+  --section-padding-y: 4rem;
+  --container-max: 80rem;
+
+  /* ─── Transitions ─── */
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+}
+
+/* ─── Responsive section padding ─── */
+@media (min-width: 768px) {
+  @theme inline {
+    --section-padding-y: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  @theme inline {
+    --section-padding-y: 7rem;
+  }
+}
+
+/* ─── Base styles ─── */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography defaults ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Utility: section wrapper ─── */
+.section {
+  padding-inline: var(--section-padding-x);
+  padding-block: var(--section-padding-y);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+/* ─── Selection color ─── */
+::selection {
+  background: var(--color-brand-blue);
+  color: var(--color-gray-0);
+}
