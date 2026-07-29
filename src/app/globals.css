@@ -97,3 +97,22 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-brand-blue);
   color: var(--color-gray-0);
 }
+
+/* ─── Accordion animations (Radix) ─── */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 200ms ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 200ms ease-out;
+}

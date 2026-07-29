@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large media assets (serve from CDN)
+public/videos/*.mp4
+public/videos/*.webm
