@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Section } from "@/components/ui/section";
 import { CTASection } from "@/components/sections/shared/cta-section";
 import { MapPin, Globe, Clock } from "lucide-react";
+import Image from "next/image";
 
 const locationCards = [
   { city: "Montego Bay, Jamaica", tagline: "Our home, and Where it All Started", facilities: "Freeport, Montego Bay", language: "English", timezone: "UTC-5, no daylight saving" },
@@ -56,10 +57,16 @@ export function JamaicaContent() {
             Montego Bay and Kingston are 2.5 hours apart, which means a local event stays local instead of becoming your event. This matters the most when you need country redundancy.
           </p>
         </div>
-        {/* Gallery placeholder */}
+        {/* Gallery with actual images */}
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="aspect-[4/3] rounded-lg bg-gray-200" />
+          {[
+            { src: "/images/locations/jamaica/gallery-1.jpg", alt: "Montego Bay office interior" },
+            { src: "/images/locations/jamaica/gallery-2.jpg", alt: "Kingston Chalmers lobby" },
+            { src: "/images/locations/jamaica/gallery-3.jpg", alt: "MBJ Cafeteria" },
+          ].map((img) => (
+            <div key={img.src} className="aspect-[4/3] overflow-hidden rounded-lg">
+              <Image src={img.src} alt={img.alt} width={400} height={300} className="h-full w-full object-cover" />
+            </div>
           ))}
         </div>
       </Section>

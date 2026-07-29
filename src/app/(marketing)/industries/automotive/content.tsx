@@ -59,18 +59,18 @@ export function AutomotiveContent() {
 
   return (
     <>
-      {/* S2: Stats */}
+      {/* S2: Stats — side by side, performance stat larger */}
       <Section>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           <div className="rounded-lg border border-gray-100 p-8">
             <p className="mb-2 text-sm font-semibold uppercase text-muted-foreground">Industry Pressure</p>
-            <p className="text-3xl font-bold md:text-4xl">40%</p>
+            <p className="text-4xl font-bold md:text-5xl">40%</p>
             <p className="mt-2 text-muted-foreground">expect the car buying experience to justify the price.</p>
             <p className="mt-1 text-xs text-gray-400">Deloitte, 2025</p>
           </div>
           <div className="rounded-lg border-2 border-brand-blue bg-brand-blue/5 p-8">
             <p className="mb-2 text-sm font-semibold uppercase text-brand-blue">itelligenceCX Performance</p>
-            <p className="text-3xl font-bold text-brand-blue md:text-4xl">70%</p>
+            <p className="text-5xl font-extrabold text-brand-blue md:text-7xl">70%</p>
             <p className="mt-2 text-muted-foreground">of live chat queries converted to leads.</p>
           </div>
         </div>

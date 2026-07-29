@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Headphones, TrendingUp, Shield } from "lucide-react";
+import { AnimatedWave } from "@/components/ui/animated-wave";
 
 const solutions = [
   {
@@ -40,16 +41,8 @@ export function SolutionMappingSection() {
 
   return (
     <section ref={ref} className="relative overflow-hidden section">
-      {/* Wave background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image
-          src="/images/home/solution-wave.png"
-          alt=""
-          fill
-          className="object-cover opacity-15"
-          sizes="100vw"
-        />
-      </div>
+      {/* Animated wave background */}
+      <AnimatedWave src="/images/home/solution-wave.png" opacity={0.12} duration={25} />
 
       <div className="container relative z-10">
         {/* Heading */}

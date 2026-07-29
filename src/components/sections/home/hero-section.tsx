@@ -57,7 +57,7 @@ export function HeroSection() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:mt-10">
-            <Button size="lg" href="/performance-pilot">
+            <Button variant="outline" size="lg" href="/performance-pilot">
               Start a Pilot
             </Button>
             <Button variant="outline" size="lg" href="/products/itelligence-ai">

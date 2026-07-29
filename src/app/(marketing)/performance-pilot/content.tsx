@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
+import Image from "next/image";
 
 const steps = [
   { number: "1", title: "Pick the Outcome That Matters", description: "Answer rate, first-call resolution, conversion, retention. You name the number you want to move, and we match it to a pre-built pilot." },
@@ -72,6 +73,11 @@ export function PilotContent() {
     <>
       {/* S2: How It Works */}
       <Section ref={ref}>
+        {/* Sundial graphic background */}
+        <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 opacity-5">
+          <Image src="/images/shared/starburst.png" alt="" width={500} height={500} />
+        </div>
+        <div className="relative z-10">
         <div className="mb-12 md:mb-16">
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">Choose Your Outcome, We Handle the Rest</h2>
         </div>
@@ -89,6 +95,7 @@ export function PilotContent() {
               <p className="text-sm text-muted-foreground">{step.description}</p>
             </motion.div>
           ))}
+        </div>
         </div>
       </Section>
 

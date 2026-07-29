@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { FAQSection } from "@/components/sections/shared/faq-section";
@@ -86,9 +87,8 @@ export function LocationsContent() {
               Belize built its tertiary system around technical training. Saint Lucia produces people equipped for fintech and software. Honduras turns out bilingual graduates trained in technology and data science. This region staffs the digital work, as well as the conversation.
             </p>
           </div>
-          <div className="flex items-center justify-center rounded-lg bg-muted p-8">
-            {/* Map placeholder */}
-            <div className="h-64 w-full rounded bg-gray-200 flex items-center justify-center text-gray-400 text-sm">Regional Map</div>
+          <div className="flex items-center justify-center rounded-lg bg-muted p-4">
+            <Image src="/images/locations/map-wide.png" alt="itelligenceCX locations across the Caribbean and North America" width={600} height={400} className="w-full rounded-lg" />
           </div>
         </div>
       </Section>

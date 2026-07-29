@@ -34,6 +34,7 @@ export function AboutContent() {
   const heroRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const inView = useInView(timelineRef, { once: true, margin: "-80px" });
+  const [expandedYear, setExpandedYear] = useState<string | null>(null);
   const [videoOpen, setVideoOpen] = useState(false);
 
   const { scrollYProgress } = useScroll({
@@ -45,18 +46,28 @@ export function AboutContent() {
   return (
     <>
       {/* S1: Hero with X pattern and video */}
-      <section ref={heroRef} className="relative flex min-h-[80vh] items-center overflow-hidden">
+      <section ref={heroRef} className="relative flex min-h-[80vh] items-center overflow-hidden bg-gray-850">
         <motion.div className="absolute inset-0 z-0" style={{ scale: heroScale }}>
-          {/* X reference image as background */}
-          <Image
-            src="/images/about/x-reference.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gray-850/70" />
+          {/* Video playing inside X clip-path mask */}
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              clipPath: "polygon(0% 0%, 35% 0%, 50% 35%, 65% 0%, 100% 0%, 100% 15%, 68% 50%, 100% 85%, 100% 100%, 65% 100%, 50% 65%, 35% 100%, 0% 100%, 0% 85%, 32% 50%, 0% 15%)",
+            }}
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="h-full w-full object-cover"
+              poster="/images/about/x-reference.jpg"
+            >
+              <source src="/videos/the-choice.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* Fallback solid bg visible outside the X */}
+          <div className="absolute inset-0 -z-10 bg-gray-850" />
         </motion.div>
 
         <div className="container relative z-10 px-[5%] py-24 md:py-32">
@@ -73,7 +84,7 @@ export function AboutContent() {
               We started as operators. We became builders. Now we&apos;re redefining what a CX partner can be.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" onClick={() => setVideoOpen(true)}>
+              <Button variant="outline" size="lg" onClick={() => setVideoOpen(true)}>
                 Watch Our Story
               </Button>
               <Button variant="outline" size="lg" href="/get-started">
@@ -130,26 +141,31 @@ export function AboutContent() {
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-100 md:left-1/2 md:-translate-x-1/2" />
+          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-100 md:left-8" />
 
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-2">
             {timeline.map((item, i) => (
-              <motion.div
+              <motion.button
                 key={item.year}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                initial={{ opacity: 0, x: -10 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: i * 0.05, duration: 0.4 }}
-                className={`relative pl-12 md:w-1/2 md:pl-0 ${
-                  i % 2 === 0 ? "md:pr-12 md:text-right" : "md:ml-auto md:pl-12"
-                }`}
+                transition={{ delay: i * 0.04, duration: 0.3 }}
+                onClick={() => setExpandedYear(expandedYear === item.year ? null : item.year)}
+                className="relative flex w-full items-start gap-4 pl-12 text-left transition-colors hover:bg-muted/50 rounded-lg py-3 px-4 md:pl-16"
               >
                 {/* Dot */}
-                <div className="absolute left-2.5 top-1 h-3 w-3 rounded-full bg-brand-blue md:left-auto md:right-auto md:top-1 md:-translate-x-1/2 md:left-[calc(-1.5rem)]" 
-                  style={i % 2 === 0 ? { right: "-1.5rem", left: "auto" } : { left: "-1.5rem" }}
-                />
-                <span className="text-sm font-bold text-brand-blue">{item.year}</span>
-                <p className="mt-1 text-muted-foreground">{item.event}</p>
-              </motion.div>
+                <div className={`absolute left-3 top-4 h-3 w-3 rounded-full transition-colors md:left-7 ${expandedYear === item.year ? "bg-brand-blue scale-125" : "bg-gray-300"}`} />
+                
+                <span className="flex-shrink-0 text-sm font-bold text-brand-blue w-12">{item.year}</span>
+                <div className="flex-1">
+                  <p className={`text-sm transition-colors ${expandedYear === item.year ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
+                    {item.event}
+                  </p>
+                </div>
+                <svg className={`h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform ${expandedYear === item.year ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                  <path d="M19 9l-7 7-7-7" />
+                </svg>
+              </motion.button>
             ))}
           </div>
         </div>

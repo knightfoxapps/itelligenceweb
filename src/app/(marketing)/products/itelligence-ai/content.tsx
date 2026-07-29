@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { FAQSection } from "@/components/sections/shared/faq-section";
 import { CTASection } from "@/components/sections/shared/cta-section";
+import { PricingTable } from "@/components/sections/product/pricing-table";
 
 const productPillars = [
   {
@@ -170,6 +171,9 @@ export function ProductContent() {
           ))}
         </div>
       </Section>
+
+      {/* Pricing Table */}
+      <PricingTable />
 
       {/* FAQ */}
       <FAQSection
