@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Section } from "@/components/ui/section";
 import { CTASection } from "@/components/sections/shared/cta-section";
+import { MapPin, Globe, Clock } from "lucide-react";
 
 const locationCards = [
   { city: "Montego Bay, Jamaica", tagline: "Our home, and Where it All Started", facilities: "Freeport, Montego Bay", language: "English", timezone: "UTC-5, no daylight saving" },
@@ -38,9 +39,9 @@ export function JamaicaContent() {
               <h3 className="mb-2 text-xl font-bold">{card.city}</h3>
               <p className="mb-4 text-sm text-muted-foreground">{card.tagline}</p>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <p><span className="font-semibold text-foreground">Facilities:</span> {card.facilities}</p>
-                <p><span className="font-semibold text-foreground">Language:</span> {card.language}</p>
-                <p><span className="font-semibold text-foreground">Timezone:</span> {card.timezone}</p>
+                <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-brand-blue" /><span className="font-semibold text-foreground">Facilities:</span> {card.facilities}</p>
+                <p className="flex items-center gap-2"><Globe className="h-4 w-4 text-brand-blue" /><span className="font-semibold text-foreground">Language:</span> {card.language}</p>
+                <p className="flex items-center gap-2"><Clock className="h-4 w-4 text-brand-blue" /><span className="font-semibold text-foreground">Timezone:</span> {card.timezone}</p>
               </div>
             </div>
           ))}

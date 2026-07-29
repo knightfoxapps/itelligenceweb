@@ -5,20 +5,21 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { BarChart3, Brain, Bot } from "lucide-react";
 
 const products = [
   {
-    icon: "/images/home/icon-qa.png",
+    icon: BarChart3,
     title: "QA and Trend Analysis",
     href: "/products/itelligence-ai/qa-trend-analysis",
   },
   {
-    icon: "/images/home/icon-training.png",
+    icon: Brain,
     title: "AI Training System",
     href: "/products/itelligence-ai/ai-training-system",
   },
   {
-    icon: "/images/home/icon-workforce.png",
+    icon: Bot,
     title: "AI Workforce",
     href: "/products/itelligence-ai/ai-workforce",
   },
@@ -86,13 +87,7 @@ export function ProductSuiteSection() {
                 className="group block rounded-lg border border-gray-100 p-6 transition-all hover:border-brand-blue/20 hover:shadow-lg md:p-8"
               >
                 <div className="mb-5 md:mb-6">
-                  <Image
-                    src={product.icon}
-                    alt=""
-                    width={48}
-                    height={48}
-                    className="h-12 w-12"
-                  />
+                  <product.icon className="h-10 w-10 text-brand-blue" />
                 </div>
                 <h3 className="mb-3 text-xl font-bold md:text-2xl">
                   {product.title}

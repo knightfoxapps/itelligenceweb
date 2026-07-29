@@ -5,10 +5,11 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Headphones, TrendingUp, Shield } from "lucide-react";
 
 const solutions = [
   {
-    icon: "/images/home/icon-engage.png",
+    icon: Headphones,
     title: "I want every interaction to count",
     description:
       "Solutions for scaling support, ramping for seasonal volume, adding automation, integrating digital services, and resolving the calls AI can't handle.",
@@ -16,7 +17,7 @@ const solutions = [
     href: "/solutions/engage",
   },
   {
-    icon: "/images/home/icon-grow.png",
+    icon: TrendingUp,
     title: "I want to acquire new customers.",
     description:
       "Solutions for outbound sales, qualified pipeline, and converting customer intelligence into revenue.",
@@ -24,7 +25,7 @@ const solutions = [
     href: "/solutions/grow",
   },
   {
-    icon: "/images/home/icon-retain.png",
+    icon: Shield,
     title: "I want to reduce churn and defend market share.",
     description:
       "Solutions for churn defense, loyalty design, and QA that creates repeating revenue.",
@@ -74,13 +75,7 @@ export function SolutionMappingSection() {
               className="flex flex-col"
             >
               <div className="mb-5 md:mb-6">
-                <Image
-                  src={solution.icon}
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="h-12 w-12"
-                />
+                <solution.icon className="h-10 w-10 text-brand-blue" />
               </div>
               <h3 className="mb-4 text-2xl font-bold leading-tight md:text-3xl">
                 {solution.title}

@@ -8,6 +8,7 @@ import { Section } from "@/components/ui/section";
 import { SundialSection } from "@/components/sections/shared/sundial-section";
 import { FAQSection } from "@/components/sections/shared/faq-section";
 import { CTASection } from "@/components/sections/shared/cta-section";
+import { Sparkles, MessageCircle, SlidersHorizontal } from "lucide-react";
 
 const sundialCards = [
   {
@@ -134,9 +135,14 @@ export function AutomotiveContent() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {["Quality & Insight Engine", "AI Agent Performance Coach", "High-Powered Workforce Optimizer"].map((title) => (
-            <div key={title} className="rounded-lg border border-gray-100 p-6 text-center">
-              <h3 className="mb-2 text-lg font-bold">{title}</h3>
+          {[
+            { icon: Sparkles, title: "Quality & Insight Engine" },
+            { icon: MessageCircle, title: "AI Agent Performance Coach" },
+            { icon: SlidersHorizontal, title: "High-Powered Workforce Optimizer" },
+          ].map((item) => (
+            <div key={item.title} className="rounded-lg border border-gray-100 p-6 text-center">
+              <item.icon className="mx-auto mb-3 h-8 w-8 text-brand-blue" />
+              <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
             </div>
           ))}
         </div>

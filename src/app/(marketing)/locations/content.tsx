@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { FAQSection } from "@/components/sections/shared/faq-section";
 import { CTASection } from "@/components/sections/shared/cta-section";
+import { MapPin, Globe, Clock, Star } from "lucide-react";
 
 const locations = [
   { name: "Jamaica", tagline: "Our Largest Workforce, and Where it All Started", locations: "Montego Bay, Kingston", language: "English", timezone: "UTC-5, no daylight saving", bestFor: "Scale in English, and the widest range of program types", href: "/locations/jamaica" },
@@ -57,10 +58,10 @@ export function LocationsContent() {
                 <h3 className="mb-1 text-xl font-bold group-hover:text-brand-blue">{loc.name}</h3>
                 <p className="mb-4 text-sm text-muted-foreground">{loc.tagline}</p>
                 <div className="space-y-2 text-xs text-muted-foreground">
-                  <p><span className="font-semibold text-foreground">Facilities:</span> {loc.locations}</p>
-                  <p><span className="font-semibold text-foreground">Language:</span> {loc.language}</p>
-                  <p><span className="font-semibold text-foreground">Timezone:</span> {loc.timezone}</p>
-                  <p><span className="font-semibold text-foreground">Best for:</span> {loc.bestFor}</p>
+                  <p className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-brand-blue" /><span className="font-semibold text-foreground">Facilities:</span> {loc.locations}</p>
+                  <p className="flex items-center gap-1.5"><Globe className="h-3.5 w-3.5 text-brand-blue" /><span className="font-semibold text-foreground">Language:</span> {loc.language}</p>
+                  <p className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-brand-blue" /><span className="font-semibold text-foreground">Timezone:</span> {loc.timezone}</p>
+                  <p className="flex items-center gap-1.5"><Star className="h-3.5 w-3.5 text-brand-blue" /><span className="font-semibold text-foreground">Best for:</span> {loc.bestFor}</p>
                 </div>
                 <span className="mt-4 inline-block text-sm font-semibold text-brand-blue group-hover:underline">Learn More →</span>
               </Link>

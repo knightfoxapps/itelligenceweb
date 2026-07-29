@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { FAQSection } from "@/components/sections/shared/faq-section";
 import { CTASection } from "@/components/sections/shared/cta-section";
+import { Handshake, Target, TrendingUp, GraduationCap } from "lucide-react";
 
 const solutions = [
   {
@@ -43,10 +44,10 @@ const channels = [
 ];
 
 const howWeEngage = [
-  { title: "Leadership Proximity", description: "Senior leaders embedded within your operation ensure decisions are fast, informed, and aligned with your brand vision." },
-  { title: "Outcome-Led Quality Assurance", description: "We measure what matters. Every interaction is scored against the outcomes that drive your business, not just a checklist." },
-  { title: "Intelligence That Compounds", description: "Our AI learns from every interaction. The system gets smarter, your team gets sharper, and your customers feel the difference." },
-  { title: "Skilled Nearshore Workforce", description: "Culturally aligned, technically fluent talent that operates as a seamless extension of your brand, not an outsourced function." },
+  { icon: Handshake, title: "Leadership Proximity", description: "Senior leaders embedded within your operation ensure decisions are fast, informed, and aligned with your brand vision." },
+  { icon: Target, title: "Outcome-Led Quality Assurance", description: "We measure what matters. Every interaction is scored against the outcomes that drive your business, not just a checklist." },
+  { icon: TrendingUp, title: "Intelligence That Compounds", description: "Our AI learns from every interaction. The system gets smarter, your team gets sharper, and your customers feel the difference." },
+  { icon: GraduationCap, title: "Skilled Nearshore Workforce", description: "Culturally aligned, technically fluent talent that operates as a seamless extension of your brand, not an outsourced function." },
 ];
 
 const faqs = [
@@ -195,6 +196,7 @@ export function EngageContent() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {howWeEngage.map((item) => (
             <div key={item.title} className="border-l-2 border-brand-blue pl-6">
+              <item.icon className="mb-3 h-6 w-6 text-brand-blue" />
               <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
               <p className="text-sm text-muted-foreground">{item.description}</p>
             </div>
