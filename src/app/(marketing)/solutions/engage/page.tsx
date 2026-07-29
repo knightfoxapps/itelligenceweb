@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/sections/shared/page-hero";
+import { XHero } from "@/components/sections/shared/x-hero";
 import { EngageContent } from "./content";
 
 export const metadata: Metadata = {
   title: "Engage",
-  description:
-    "End-to-end CX delivery measured in outcomes, maximized for efficiency and designed for sustained lifecycle engagement.",
+  description: "End-to-end CX delivery measured in outcomes, maximized for efficiency and designed for sustained lifecycle engagement.",
 };
 
 export default function EngagePage() {
   return (
     <main>
-      <PageHero
+      <XHero
+        eyebrow="Engage"
         headline="Captivate Customer Attention at Every Interaction"
-        subheadline="End-to-end CX delivery measured in outcomes, maximized for efficiency and designed for sustained lifecycle engagement."
-        backgroundImage="/images/solutions/hero-engage.png"
-        primaryCta={{ label: "Launch Pilot", href: "/performance-pilot" }}
-        secondaryCta={{ label: "itelligence.AI", href: "/products/itelligence-ai" }}
+        body="End-to-end CX delivery measured in outcomes, maximized for efficiency and designed for sustained lifecycle engagement."
+        image="/images/solutions/hero-engage.png"
+        imageAlt="Engaged customer experience team"
+        cta={{ label: "Launch Pilot", href: "/performance-pilot" }}
       />
       <EngageContent />
     </main>
