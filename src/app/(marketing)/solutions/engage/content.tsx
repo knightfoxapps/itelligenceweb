@@ -196,7 +196,7 @@ export function EngageContent() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {howWeEngage.map((item) => (
             <div key={item.title} className="border-l-2 border-brand-blue pl-6">
-              <item.icon className="mb-3 h-6 w-6 text-brand-blue" />
+              <item.icon className="mb-3 h-10 w-10 text-brand-blue" />
               <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
               <p className="text-sm text-muted-foreground">{item.description}</p>
             </div>

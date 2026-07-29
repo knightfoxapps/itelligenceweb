@@ -141,7 +141,7 @@ export function AutomotiveContent() {
             { icon: SlidersHorizontal, title: "High-Powered Workforce Optimizer" },
           ].map((item) => (
             <div key={item.title} className="rounded-lg border border-gray-100 p-6 text-center">
-              <item.icon className="mx-auto mb-3 h-8 w-8 text-brand-blue" />
+              <item.icon className="mx-auto mb-3 h-10 w-10 text-brand-blue" />
               <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
             </div>
           ))}
