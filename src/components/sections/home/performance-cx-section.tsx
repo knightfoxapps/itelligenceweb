@@ -16,14 +16,14 @@ export function PerformanceCXSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-gray-850 py-20 md:py-28 lg:py-36">
-      {/* Wave background graphic */}
+    <section ref={ref} className="relative overflow-hidden py-20 md:py-28 lg:py-36">
+      {/* Dark blue 3D wave — fills entire background */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
           src="/images/home/performance-cx-wave.png"
           alt=""
           fill
-          className="object-cover opacity-40"
+          className="object-cover"
           sizes="100vw"
         />
       </div>

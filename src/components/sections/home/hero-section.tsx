@@ -5,23 +5,24 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 /**
- * Homepage Hero — matches mockup exactly:
+ * Homepage Hero — matches mockup:
  * - White background
- * - Blue/gold wave accent graphic in top-right area
- * - Dark text centered
+ * - Full-width blue wave band flowing horizontally through the hero
+ * - Photo of woman with tablet positioned top-right, overlapping wave
+ * - Dark text centered below/on the wave
  * - "Performance by Design" eyebrow in gold
- * - Large headline, subheading, two outline buttons
+ * - Two outline buttons
  */
 export function HomeHero() {
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* Wave accent graphic — top right */}
-      <div className="pointer-events-none absolute -right-20 -top-10 z-0 w-[60%] max-w-2xl opacity-80">
+      {/* Full-width wave band — flows horizontally through the section */}
+      <div className="pointer-events-none absolute left-0 top-[15%] z-0 w-full">
         <Image
           src="/images/home/hero-wave.png"
           alt=""
-          width={800}
-          height={400}
+          width={1920}
+          height={900}
           className="w-full"
           priority
         />

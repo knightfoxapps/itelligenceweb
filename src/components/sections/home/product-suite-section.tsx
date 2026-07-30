@@ -5,7 +5,6 @@ import { useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { BarChart3, Brain, Bot } from "lucide-react";
-import { AnimatedWave } from "@/components/ui/animated-wave";
 
 const products = [
   { icon: BarChart3, title: "QA and Trend Analysis", href: "/products/itelligence-ai/qa-trend-analysis" },
@@ -26,7 +25,16 @@ export function ProductSuiteSection() {
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-white px-[5%] py-16 md:py-24 lg:py-28">
-      <AnimatedWave src="/images/home/operating-model-wave.png" opacity={0.08} duration={35} />
+      {/* Full-width gold wave background band */}
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-center">
+        <Image
+          src="/images/home/operating-model-wave.png"
+          alt=""
+          width={1920}
+          height={900}
+          className="w-full opacity-70"
+        />
+      </div>
 
       <div className="container relative z-10 mx-auto">
         {/* Header */}

@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Headphones, TrendingUp, Shield } from "lucide-react";
-import { AnimatedWave } from "@/components/ui/animated-wave";
 
 const solutions = [
   {
@@ -45,7 +44,16 @@ export function SolutionMappingSection() {
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-white px-[5%] py-16 md:py-24 lg:py-28">
-      <AnimatedWave src="/images/home/solution-wave.png" opacity={0.08} duration={30} />
+      {/* Full-width wave background band */}
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-center">
+        <Image
+          src="/images/home/solution-wave.png"
+          alt=""
+          width={1920}
+          height={900}
+          className="w-full opacity-60"
+        />
+      </div>
 
       <div className="container relative z-10 mx-auto">
         {/* Heading */}

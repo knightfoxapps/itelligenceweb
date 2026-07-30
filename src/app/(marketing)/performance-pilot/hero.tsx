@@ -17,17 +17,16 @@ import { Button } from "@/components/ui/button";
 export function PilotHero() {
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-850">
-      {/* 3D wave background */}
+      {/* 3D wave background — fills the whole section */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src="/images/cta/hero-pilot.png"
+          src="/images/home/performance-cx-wave.png"
           alt=""
           fill
           className="object-cover"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gray-850/30" />
       </div>
 
       {/* Content */}
