@@ -82,7 +82,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex lg:ml-auto lg:mr-6">
           {navItems.map((item) => (
             <NavDropdown key={item.label} label={item.label} items={item.items} />
           ))}
@@ -170,9 +170,9 @@ function NavDropdown({ label, items }: { label: string; items: { label: string; 
 
   return (
     <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-      <button className="flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-brand-blue" aria-expanded={open}>
+      <button className="flex items-center gap-1.5 text-base font-medium text-foreground transition-colors hover:text-brand-blue" aria-expanded={open}>
         {label}
-        <svg className={clsx("h-3 w-3 transition-transform", open && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className={clsx("h-4 w-4 transition-transform", open && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>

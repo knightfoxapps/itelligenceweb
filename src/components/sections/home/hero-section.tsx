@@ -5,18 +5,18 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 /**
- * Homepage Hero — matches mockup:
+ * Homepage Hero — matches V2 design:
  * - White background
  * - Full-width blue wave band flowing horizontally through the hero
- * - Photo of woman with tablet positioned top-right, overlapping wave
- * - Dark text centered below/on the wave
- * - "Performance by Design" eyebrow in gold
- * - Two outline buttons
+ * - "Performance by Design" eyebrow in gray (no period)
+ * - Blue headline: "Your Customer. Their Choice."
+ * - Sub-body text above the wave
+ * - Below the wave: larger bold statement + two outline CTA buttons
  */
 export function HomeHero() {
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* Full-width wave band — flows horizontally through the section */}
+      {/* Full-width wave band — flows horizontally right below the subtext */}
       <div className="pointer-events-none absolute left-0 top-[15%] z-0 w-full">
         <Image
           src="/images/home/hero-wave.png"
@@ -29,30 +29,41 @@ export function HomeHero() {
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-[5%] py-20 md:py-28 lg:py-36">
+      <div className="container relative z-10 mx-auto px-[5%] py-16 md:py-24 lg:py-28">
+        {/* Upper section — above the wave */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mx-auto max-w-3xl text-center"
+          className="mx-auto max-w-5xl text-center"
         >
-          <p className="mb-4 text-sm font-medium text-brand-gold md:text-base">
-            Performance by Design.
+          <p className="mb-1 text-2xl font-normal text-gray-400 md:text-2xl">
+            Performance by Design
           </p>
-          <h1 className="mb-6 text-4xl font-bold text-foreground md:text-6xl lg:text-7xl">
+          <h1 className="mb-5 text-5xl font-bold text-brand-blue md:text-6xl lg:text-[4rem]">
             Your Customer. Their Choice.
           </h1>
-          <p className="mx-auto mb-4 max-w-2xl text-base text-muted-foreground md:text-lg">
+          <p className="mx-auto max-w-[39rem] text-lg font-semibold text-foreground md:text-xl">
             We shape each interaction across the CX lifecycle with managed
-            intelligence and influential delivery turning the power of customer
-            choice in your favor.
+            intelligence and influential delivery turning the power of
+            customer choice in your favor.
           </p>
-          <p className="mx-auto max-w-2xl text-sm text-muted-foreground md:text-base">
-            In a world where customer tastes change rapidly and competition moves
-            fast, we keep brand builders ahead of market pace.
+        </motion.div>
+
+        {/* Lower section — below the wave */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mx-auto mt-32 max-w-3xl text-center md:mt-40 lg:mt-48"
+        >
+          <p className="mx-auto mb-8 max-w-[46rem] text-2xl font-medium text-foreground md:text-3xl lg:text-[2rem] lg:leading-[1.3]">
+            In a world where customer tastes change rapidly
+            and competition moves fast, we keep brand
+            builders ahead of market pace.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <Button variant="outline" href="/performance-pilot">
               Start a Pilot
             </Button>

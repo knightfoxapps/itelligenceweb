@@ -1,14 +1,28 @@
 import { type ButtonHTMLAttributes, forwardRef } from "react";
+import Link from "next/link";
 import { clsx } from "clsx";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "link";
 type ButtonSize = "sm" | "md" | "lg";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonBaseProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   href?: string;
+  className?: string;
+  children?: React.ReactNode;
 }
+
+type ButtonAsButton = ButtonBaseProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonBaseProps> & {
+    href?: undefined;
+  };
+
+type ButtonAsLink = ButtonBaseProps & {
+  href: string;
+};
+
+type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variants: Record<ButtonVariant, string> = {
   primary:
@@ -29,20 +43,34 @@ const sizes: Record<ButtonSize, string> = {
   lg: "px-8 py-4 text-lg",
 };
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "primary", size = "md", children, ...props }, ref) => {
+export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  ({ className, variant = "primary", size = "md", href, children, ...props }, ref) => {
+    const classes = clsx(
+      "inline-flex items-center justify-center gap-2 rounded-sm font-semibold transition-all",
+      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue",
+      "disabled:opacity-50 disabled:pointer-events-none",
+      variants[variant],
+      variant !== "link" && sizes[size],
+      className,
+    );
+
+    if (href) {
+      return (
+        <Link
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          className={classes}
+        >
+          {children}
+        </Link>
+      );
+    }
+
     return (
       <button
-        ref={ref}
-        className={clsx(
-          "inline-flex items-center justify-center gap-2 rounded-sm font-semibold transition-all",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue",
-          "disabled:opacity-50 disabled:pointer-events-none",
-          variants[variant],
-          variant !== "link" && sizes[size],
-          className,
-        )}
-        {...props}
+        ref={ref as React.Ref<HTMLButtonElement>}
+        className={classes}
+        {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {children}
       </button>
