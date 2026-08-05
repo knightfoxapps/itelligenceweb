@@ -4,48 +4,45 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Headphones, TrendingUp, Shield } from "lucide-react";
 
 const solutions = [
   {
-    icon: Headphones,
-    title: "I want every interaction to count",
+    icon: "/images/home/icon-engage.png",
+    title: "I want every interaction to count.",
     description: "Solutions for scaling support, ramping for seasonal volume, adding automation, integrating digital services, and resolving the calls AI can't handle.",
-    cta: "Engage Solutions",
+    cta: "View Services",
     href: "/solutions/engage",
   },
   {
-    icon: TrendingUp,
+    icon: "/images/home/icon-grow.png",
     title: "I want to acquire new customers.",
     description: "Solutions for outbound sales, qualified pipeline, and converting customer intelligence into revenue.",
-    cta: "Grow Solutions",
+    cta: "View Services",
     href: "/solutions/grow",
   },
   {
-    icon: Shield,
+    icon: "/images/home/icon-retain.png",
     title: "I want to reduce churn and defend market share.",
     description: "Solutions for churn defense, loyalty design, and QA that creates repeating revenue.",
-    cta: "Retain Solutions",
+    cta: "View Services",
     href: "/solutions/retain",
   },
 ];
 
 /**
  * "Start Where it Matters Most" — matches mockup:
- * - White background with subtle animated wave
- * - Centered headline
- * - Three columns with icon above, text below, button at bottom
- * - "Every solution is built on the itelligence.AI operating model." bridge text
+ * - White background with dotted pattern
+ * - Left-aligned headline, wraps after "Where"
+ * - Three columns with icon, title, description, button
  */
 export function SolutionMappingSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-white px-[5%] py-16 md:py-24 lg:py-28">
-      {/* Full-width wave background band */}
-      <div className="pointer-events-none absolute inset-0 z-0 flex items-center">
+    <section ref={ref} className="relative overflow-hidden bg-white px-[5%] py-16 md:py-20 lg:py-24">
+      {/* Dotted background pattern */}
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-start">
         <Image
           src="/images/home/solution-wave.png"
           alt=""
@@ -56,51 +53,59 @@ export function SolutionMappingSection() {
       </div>
 
       <div className="container relative z-10 mx-auto">
-        {/* Heading */}
+        {/* Heading — left aligned, wraps after "Where" */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-14 text-center md:mb-16"
+          className="mb-14 md:mb-16"
         >
-          <h2 className="text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
-            Start Where it Matters Most
+          <h2 className="text-[68px] font-medium leading-[72px] text-black">
+            Start Where<br className="hidden md:inline" />
+            it Matters Most
+            <Image
+              src="/images/home/arrow-most.png"
+              alt=""
+              width={38}
+              height={38}
+              className="ml-10 inline-block align-middle"
+            />
           </h2>
         </motion.div>
 
         {/* Three columns */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-12">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
           {solutions.map((sol, i) => (
             <motion.div
               key={sol.href}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="flex flex-col items-start"
+              className="flex flex-col items-center text-center"
             >
-              <sol.icon className="mb-5 h-10 w-10 text-brand-blue" strokeWidth={1.5} />
-              <h3 className="mb-4 text-xl font-bold text-foreground md:text-2xl">
+              <div className="relative mb-3 h-28 w-28 md:h-36 md:w-36 lg:h-44 lg:w-44">
+                <Image
+                  src={sol.icon}
+                  alt=""
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <h3 className="mb-3 max-w-[200px] text-[24px] font-medium leading-[28px] text-black">
                 {sol.title}
               </h3>
-              <p className="mb-6 flex-1 text-sm text-muted-foreground md:text-base">
+              <p className="mb-6 max-w-[220px] flex-1 text-[18px] font-normal leading-[22px] text-black">
                 {sol.description}
               </p>
-              <Button variant="outline" size="sm" href={sol.href}>
+              <Link
+                href={sol.href}
+                className="inline-flex items-center justify-center rounded-full border border-black/20 bg-[#f4f5f7] px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-[#ebedf0]"
+              >
                 {sol.cta}
-              </Button>
+              </Link>
             </motion.div>
           ))}
         </div>
-
-        {/* Bridge text */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-14 text-center text-lg font-medium text-foreground md:mt-16 md:text-xl"
-        >
-          Every solution is built on the itelligence.AI operating model.
-        </motion.p>
       </div>
     </section>
   );
