@@ -25,18 +25,19 @@ export function CapabilitiesSection() {
   return (
     <section ref={ref} className="bg-white px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container mx-auto">
-        {/* Header */}
+        {/* Header — centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-12 grid grid-cols-1 gap-5 md:mb-16 md:grid-cols-2 md:gap-12 lg:gap-20"
+          className="mb-12 flex flex-col items-center text-center md:mb-16"
         >
-          <h2 className="text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
+          <h2 className="text-[60px] font-medium leading-[64px] text-black">
             How We Design Performance
           </h2>
-          <p className="text-base text-muted-foreground md:text-lg">
-            Performance is not speed alone. It&apos;s the named outcomes,
+          <p className="mt-4 text-[24px] font-semibold leading-[28px] text-black">
+            Performance is not speed alone. It&apos;s the named outcomes
+            <br className="hidden md:inline" />
             delivered with precision, by design.
           </p>
         </motion.div>
@@ -49,29 +50,31 @@ export function CapabilitiesSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="flex flex-col items-center text-center"
             >
-              <Link href={cap.href} className="group block">
-                <div className="mb-5 overflow-hidden rounded-lg">
-                  <Image
-                    src={cap.image}
-                    alt={cap.title}
-                    width={400}
-                    height={280}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <p className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  {cap.eyebrow}
-                </p>
-                <h3 className="mb-2 text-lg font-bold text-foreground md:text-xl">
-                  {cap.title}
-                </h3>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  {cap.description}
-                </p>
-                <span className="text-sm font-medium text-brand-blue group-hover:underline">
-                  Learn More →
-                </span>
+              <div className="mb-5">
+                <Image
+                  src={cap.image}
+                  alt={cap.title}
+                  width={400}
+                  height={400}
+                  className="w-full max-w-[280px] object-contain"
+                />
+              </div>
+              <p className="mb-1 text-sm font-medium text-muted-foreground">
+                {cap.eyebrow}
+              </p>
+              <h3 className="mb-3 text-xl font-bold text-black md:text-2xl">
+                {cap.title}
+              </h3>
+              <p className="mb-6 flex-1 text-sm text-muted-foreground">
+                {cap.description}
+              </p>
+              <Link
+                href={cap.href}
+                className="inline-flex items-center justify-center rounded-lg bg-[#e7c64a] px-5 py-1.5 text-sm font-medium text-black shadow-[0_2px_0_0_rgba(0,0,0,0.85)] transition-colors hover:bg-[#d4b443]"
+              >
+                Learn More
               </Link>
             </motion.div>
           ))}
