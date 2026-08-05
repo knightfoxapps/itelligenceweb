@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 /**
  * Homepage Hero — matches V2 design:
@@ -63,13 +63,19 @@ export function HomeHero() {
             builders ahead of market pace.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button variant="outline" href="/performance-pilot">
+          <div className="flex flex-wrap items-center justify-center gap-5">
+            <Link
+              href="/performance-pilot"
+              className="inline-flex h-[43px] w-[152px] items-center justify-center rounded-lg bg-brand-blue text-base font-medium text-white shadow-[0_0_12px_2px_rgba(17,110,167,0.4),0_2px_0_0_rgba(0,0,0,0.7)] transition-colors hover:bg-secondary-blue"
+            >
               Start a Pilot
-            </Button>
-            <Button variant="outline" href="/products/itelligence-ai">
+            </Link>
+            <Link
+              href="/products/itelligence-ai"
+              className="inline-flex h-[43px] w-[152px] items-center justify-center rounded-lg bg-[#f4f5f7] text-base font-medium text-foreground shadow-[0_2px_0_0_rgba(0,0,0,0.7)] transition-colors hover:bg-[#ebedf0]"
+            >
               itelligence.AI
-            </Button>
+            </Link>
           </div>
         </motion.div>
       </div>

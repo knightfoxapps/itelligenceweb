@@ -92,13 +92,13 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/products/itelligence-ai"
-            className="rounded-sm border border-foreground px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-gray-100"
+            className="rounded-lg bg-[#f4f5f7] px-5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-[#ebedf0] shadow-[0_2px_0_0_rgba(0,0,0,0.85)]"
           >
             itelligence.AI
           </Link>
           <Link
             href="/get-started"
-            className="rounded-sm bg-brand-blue px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-secondary-blue"
+            className="rounded-lg bg-brand-blue px-5 py-1.5 text-sm font-medium text-white transition-colors hover:bg-secondary-blue shadow-[0_2px_0_0_rgba(0,0,0,0.85)]"
           >
             Get Started
           </Link>
