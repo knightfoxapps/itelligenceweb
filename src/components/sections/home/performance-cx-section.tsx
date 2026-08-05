@@ -3,7 +3,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
 /**
  * "Choice Intelligence That Earns Retention" — matches mockup:
@@ -16,7 +15,7 @@ export function PerformanceCXSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="relative overflow-hidden py-20 md:py-28 lg:py-36">
+    <section ref={ref} className="relative overflow-hidden pt-14 pb-32 md:pt-20 md:pb-44 lg:pt-24 lg:pb-52">
       {/* Dark blue 3D wave — fills entire background */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
@@ -34,27 +33,20 @@ export function PerformanceCXSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mx-auto max-w-3xl text-center"
+          className="max-w-3xl"
         >
-          <p className="mb-3 text-sm font-medium text-brand-gold">
+          <p className="mb-2 text-[24px] font-medium leading-[60px] text-[#99dbf8]">
             Performance CX
           </p>
-          <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
-            Choice Intelligence That Earns Retention
+          <h2 className="mb-14 text-6xl font-semibold leading-tight text-white md:text-7xl md:leading-tight">
+            Choice Intelligence<br className="hidden md:inline" />
+            That Earns Retention
           </h2>
-          <p className="mx-auto max-w-2xl text-base text-gray-300 md:text-lg">
+          <p className="max-w-[30rem] text-[18px] font-normal leading-[22px] text-white">
             We see the patterns behind why customers reach out, why they buy,
             and why they choose to stay. Applied through QA, trend analysis,
             and lifecycle engagement, we make revenue predictable and repeatable.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Button variant="outline" href="/performance-pilot">
-              Start a Pilot
-            </Button>
-            <Button variant="outline" href="/products/itelligence-ai">
-              itelligence.AI
-            </Button>
-          </div>
         </motion.div>
       </div>
     </section>
