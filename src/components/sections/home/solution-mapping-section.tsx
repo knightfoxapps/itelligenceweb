@@ -106,6 +106,28 @@ export function SolutionMappingSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Centered statement + down arrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-16 flex flex-col items-center md:mt-20"
+        >
+          <p className="text-center text-[48px] font-medium leading-[54px] text-black">
+            Every solution is built on the{" "}
+            <br className="hidden md:inline" />
+            <span className="font-semibold text-[#0078a9]">itelligence.AI</span>{" "}
+            operating model.
+          </p>
+          <Image
+            src="/images/home/down-arrow.png"
+            alt=""
+            width={38}
+            height={38}
+            className="mt-8"
+          />
+        </motion.div>
       </div>
     </section>
   );
