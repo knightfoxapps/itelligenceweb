@@ -37,15 +37,15 @@ export function HomeHero() {
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           className="mx-auto max-w-5xl text-center"
         >
-          <p className="mb-1 text-2xl font-normal text-gray-400 md:text-2xl">
+          <p className="mb-1 text-2xl font-normal text-[#757575] md:text-2xl leading-[2.5]">
             Performance by Design
           </p>
-          <h1 className="mb-5 text-5xl font-bold text-brand-blue md:text-6xl lg:text-[4rem]">
+          <h1 className="mb-5 text-5xl font-semibold text-[#116ea7] md:text-6xl lg:text-[4rem] lg:leading-[1.07]">
             Your Customer. Their Choice.
           </h1>
-          <p className="mx-auto max-w-[39rem] text-lg font-semibold text-foreground md:text-xl">
+          <p className="mx-auto max-w-[39rem] text-lg font-medium text-black md:text-xl text-center">
             We shape each interaction across the CX lifecycle with managed
-            intelligence and influential delivery turning the power of
+            intelligence and influential delivery turning the power of<br className="hidden md:inline" />
             customer choice in your favor.
           </p>
         </motion.div>
@@ -57,9 +57,9 @@ export function HomeHero() {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
           className="mx-auto mt-32 max-w-3xl text-center md:mt-40 lg:mt-48"
         >
-          <p className="mx-auto mb-8 max-w-[46rem] text-2xl font-medium text-foreground md:text-3xl lg:text-[2rem] lg:leading-[1.3]">
-            In a world where customer tastes change rapidly
-            and competition moves fast, we keep brand
+          <p className="mx-auto mb-8 max-w-[46rem] text-2xl font-semibold text-foreground md:text-[1.75rem] lg:text-[1.75rem] lg:leading-[1.14] text-center">
+            In a world where customer tastes change rapidly<br className="hidden md:inline" />
+            and competition moves fast, we keep brand<br className="hidden md:inline" />
             builders ahead of market pace.
           </p>
 

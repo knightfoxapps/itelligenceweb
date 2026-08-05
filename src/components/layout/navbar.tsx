@@ -73,10 +73,10 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <Image
-            src="/logo.svg"
+            src="/logo-wordmark.png"
             alt="itelligenceCX"
-            width={140}
-            height={28}
+            width={163}
+            height={35}
             priority
           />
         </Link>
