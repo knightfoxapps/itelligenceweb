@@ -73,8 +73,8 @@ export function SolutionMappingSection() {
           </h2>
         </motion.div>
 
-        {/* Three columns */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
+        {/* Three columns — spread evenly across full width */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-0">
           {solutions.map((sol, i) => (
             <motion.div
               key={sol.href}
@@ -83,7 +83,7 @@ export function SolutionMappingSection() {
               transition={{ duration: 0.5, delay: i * 0.12 }}
               className="flex flex-col items-center text-center"
             >
-              <div className="relative mb-3 h-28 w-28 md:h-36 md:w-36 lg:h-44 lg:w-44">
+              <div className="relative mb-1 h-28 w-28 md:h-36 md:w-36 lg:h-44 lg:w-44">
                 <Image
                   src={sol.icon}
                   alt=""
@@ -91,15 +91,15 @@ export function SolutionMappingSection() {
                   className="object-contain"
                 />
               </div>
-              <h3 className="mb-3 max-w-[200px] text-[24px] font-medium leading-[28px] text-black">
+              <h3 className="mb-3 max-w-[230px] text-[24px] font-medium leading-[28px] text-black">
                 {sol.title}
               </h3>
-              <p className="mb-6 max-w-[220px] flex-1 text-[18px] font-normal leading-[22px] text-black">
+              <p className="mb-6 max-w-[280px] flex-1 text-[18px] font-normal leading-[22px] text-black">
                 {sol.description}
               </p>
               <Link
                 href={sol.href}
-                className="inline-flex items-center justify-center rounded-full border border-black/20 bg-[#f4f5f7] px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-[#ebedf0]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#f4f5f7] px-5 py-1.5 text-sm font-medium text-foreground shadow-[0_2px_0_0_rgba(0,0,0,0.85)] transition-colors hover:bg-[#ebedf0]"
               >
                 {sol.cta}
               </Link>
