@@ -6,10 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const capabilities = [
-  { image: "/images/home/capability-1.png", eyebrow: "Engage, Grow & Retain", title: "CX Lifecycle Delivery", description: "Built to absorb the pressure of seasonal demand and fast innovation. Every call, every chat, every signal optimized for your business's growth.", href: "/capabilities/cx-lifecycle-delivery" },
-  { image: "/images/home/capability-2.png", eyebrow: "Understand Customer Why", title: "Insight Activation", description: "The trends behind customer behavior surfaced from every interaction. QA frameworks built around your business, trend analysis tuned to your industry.", href: "/capabilities/insight-activation" },
-  { image: "/images/home/capability-3.png", eyebrow: "CX-Led Culture", title: "Intelligent Nearshore Workforce", description: "The region's world-renowned legacy in hospitality has nurtured a versatile, CX-savvy workforce cultivated through personalized training.", href: "/capabilities/nearshore-talent" },
-  { image: "/images/home/capability-4.png", eyebrow: "Precision Framework", title: "Operational Design", description: "Channel strategy, integration architecture, automation deployment, and AI adoption that transforms and unifies CX operations.", href: "/capabilities/operational-design" },
+  { image: "/images/home/capability-1.png", eyebrow: "Engage, Grow & Retain", title: "CX Lifecycle Delivery", description: "Engage customers with delivery that optimizes every call, chat, and signal. Steady through seasonal demand and fast innovation. Humans where they matter, technology where it scales, and the operational discipline to know the difference.", href: "/capabilities/cx-lifecycle-delivery" },
+  { image: "/images/home/capability-2.png", eyebrow: "Understand Customer Why", title: "Insight Activation", description: "The trends behind customer behavior surfaced from every interaction. QA frameworks built around your business, trend analysis tuned to your industry, and AI models trained on your customer data.", href: "/capabilities/insight-activation" },
+  { image: "/images/home/capability-3.png", eyebrow: "CX-Led Culture", title: "Intelligent Nearshore Workforce", description: "The region\u2019s world-renowned legacy in hospitality has nurtured a versatile CX savvy workforce. We cultivate and develop local talent through a continuous data stream that links insights back to learning.", href: "/capabilities/nearshore-talent" },
+  { image: "/images/home/capability-4.png", eyebrow: "Precision Framework", title: "Operational Design", description: "It\u2019s channel strategy, integration architecture, automation deployment, and AI adoption that transforms and unifies CX operations. The result \u2013 your ability to grow your business and protect margins even while evolving.", href: "/capabilities/operational-design" },
 ];
 
 /**
@@ -61,13 +61,13 @@ export function CapabilitiesSection() {
                   className="w-full max-w-[280px] object-contain"
                 />
               </div>
-              <p className="mb-1 text-sm font-medium text-muted-foreground">
+              <p className="mb-1 text-[18px] font-semibold leading-[28px] text-black">
                 {cap.eyebrow}
               </p>
-              <h3 className="mb-3 text-xl font-bold text-black md:text-2xl">
+              <h3 className="mb-6 min-h-[56px] text-[24px] font-semibold leading-[28px] text-black">
                 {cap.title}
               </h3>
-              <p className="mb-6 flex-1 text-sm text-muted-foreground">
+              <p className="mb-6 flex-1 text-[16px] font-semibold leading-[20px] text-black">
                 {cap.description}
               </p>
               <Link
