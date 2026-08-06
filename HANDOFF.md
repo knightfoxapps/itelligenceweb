@@ -2,161 +2,155 @@
 
 ## 1. Mission
 
-Marketing website for itelligenceCX (nearshore CX provider going upmarket). A partner started the build in Next.js 16 + WordPress headless CMS; we've taken over to make it match the designer's PSD mockups pixel-for-pixel. ~40 pages, mostly marketing content. Deadline is this week (week of Aug 4, 2026) to show stakeholders. Current priority is design fidelity first, architecture improvements later.
+Marketing website for itelligenceCX (nearshore CX provider). Next.js 16 + WordPress headless CMS. A partner started the build; we're making it match PSD mockups pixel-for-pixel. ~40 pages, mostly marketing. Deadline is this week (week of Aug 4, 2026). Design fidelity first, architecture later.
 
 ## 2. Current State
 
-**Branch:** `design/match-v2-mockups` (7 commits ahead of the initial rebuild, latest `0c09a48`)
+**Branch:** `design/home-page-match` (PR #1 open, reviewer: knightfox)
 
-**Git push is blocked** — remote credential (`sketch77`) doesn't have access to `knightfoxapps/itelligenceweb`. User must push manually.
+**2 commits ahead of remote, 1 unstaged file:**
+- Unpushed commits: `598b737` (product suite section), `ceccdc0` (stats section)
+- Unstaged: `src/components/sections/home/insights-lead-in-section.tsx` — case study rows resized to PSD specs but the **background wave position is wrong** (extends into the numbered list when it should stop above it)
 
-**What's working and verified (all on latest commit):**
+**What's working and verified (all on latest local state):**
 - Next.js 16 + React 19 builds cleanly (`pnpm dev` on Node 22)
-- WordPress CMS at `http://54.236.105.26/graphql` serving content (blog posts, tags, ACF fields)
-- **Navbar**: Real logo wordmark PNG, correct text sizing, both CTA buttons match PSD (rounded-lg, `bg-[#f4f5f7]` for itelligence.AI, `bg-brand-blue` for Get Started, both have bottom shadow stroke, reduced height with `py-1.5`)
-- **Hero section**: Eyebrow, headline, subtext matched to PSD. Below-wave statement block with two buttons — "Start a Pilot" (blue + blue glow + bottom stroke) and "itelligence.AI" (grey + bottom stroke), both 43×152px using plain `<Link>` elements (not Button component, to avoid variant conflicts)
-- **The Shift section**: Typography matches PSD — eyebrow 24px medium `#6f6f6f`, heading 48px semibold black, body 18px regular black split into two paragraphs. Image is the PNG with gold X baked in, displayed with `object-contain` (no clip-path, no SVG overlay), negative vertical margins so woman spans full section height. Section padding reduced.
-- **Performance CX section**: Left-aligned text, asymmetric padding (text near top, large empty space below). Heading is 72px semibold white, eyebrow 24px medium `#99dbf8`, body 18px regular white in `max-w-[30rem]`. CTA buttons removed.
-- **Solution Mapping section ("Start Where it Matters Most")**: Left-aligned heading 68px medium with forced break after "Where", arrow icon after "Most" (`ml-10`). Correct PNG icons (icon-engage, icon-grow, icon-retain) at responsive sizes up to 176px. Column titles 24px medium, constrained `max-w-[200px]`. Blurbs 18px regular, `max-w-[220px]`. Pill-style "View Services" buttons.
+- WordPress CMS at `http://54.236.105.26/graphql` serving content
+- **Navbar**: SVG logo (`public/logo-wordmark.svg`), correct CTA buttons
+- **Hero section**: Matched to PSD
+- **The Shift section**: Matched to PSD
+- **Performance CX section**: Matched to PSD
+- **Solution Mapping section** ("Start Where it Matters Most"): Columns spread evenly, icons tight to titles (mb-1), title max-w 230px, description max-w 280px, centered CTA buttons with nav styling
+- **"Every solution is built on the itelligence.AI operating model"** statement block: 48px medium, "itelligence.AI" in semibold #0078a9, down arrow below
+- **Capabilities section** ("How We Design Performance"): Centered header (60px heading, 24px semibold subtext with break after "outcomes"), four columns with sunburst PNG icons (no clipping), correct text (updated copy per user), gold "Learn More" buttons (`bg-[#e7c64a]`), titles have `min-h-[56px]` so blurbs align
+- **Product Suite section** ("The Operating Model — itelligence.AI"): Full-cover `operating-model-wave.png` background (no opacity reduction), heading 68px medium, body text `max-w-[440px]` wrapping to 5 lines, three icon cards with title+Explore button overlaid inside at `bottom-8`, buttons 87×32px `bg-[#43c2ff]`, closing statement 28px semibold
+- **Stats section** ("Inside Our Operation"): 28px medium eyebrow, 68px heading, two rows of 3 stats with `border-l-[3px] border-[#dadada]`, blue stat values 60px bold, labels 30px medium
 
 **What's half-built (immediate next task):**
-- **Solution Mapping section needs polish**: Icons are still too far from titles (currently `mb-3` but needs less). Title in first column ("I want every interaction to count.") wraps to 3 lines but should be 2 — `max-w-[200px]` is too narrow, needs ~230px. The columns need to span the full screen width more evenly. User was providing feedback when session ended.
+- **Insights Lead-In section** ("Customer Lifecycle Intelligence at Scale"): Header area is done (two-column with About/Performance Insights buttons). Case study rows are sized correctly (50px semibold titles, 36px numbers in #b4b4b4, fixed 101×27px pills). **BUT the `proven-outcomes-wave.png` background extends too far down** — it bleeds into the numbered list. In the PSD, the gold wave covers only the header/title area and fades out before the numbered rows start. The background div currently uses `h-[65%]` and `-top-20` which is too much. It needs to stop roughly where the case study list begins.
 
 **What's blocked:**
-- **Git push** — credential issue, user must push.
 - **Footer white logo** — `public/logo-white-new.png` is only the symbol mark (gold knot), NOT the wordmark. User needs to export white wordmark from PSD.
-- **Logo SVG** — only PNG exists. User may get Figma SVG later.
+- **Git push** — credential works now (pushed earlier this session). Use `RobertAinsworth77` gh account for this repo.
 
-**Exact next action:** Fix the Solution Mapping section columns — reduce icon-to-title gap further, widen title max-width to ~230px so "I want every interaction to count." fits on 2 lines, and ensure columns span the full viewport width evenly. Compare against `~/Downloads/Start Where.png` reference.
+**Exact next action:** Fix the `proven-outcomes-wave.png` background height/position in `insights-lead-in-section.tsx` so it covers only the header area (title + buttons) and doesn't extend into the numbered case study rows. Reduce `h-[65%]` to something like `h-[40%]` or use a fixed pixel height. Then continue with remaining homepage sections below (FAQ section is the last one in the page assembly).
 
 ## 3. Decisions Made (and Why)
 
-- **Decision:** Use plain `<Link>` elements for hero CTA buttons instead of the `<Button>` component
-  - **Alternatives:** Use Button with variant="ghost" or override classes
-  - **Reason:** The Button component's variant system (using clsx) creates class conflicts in Tailwind v4 where the variant's `bg-transparent` or `bg-brand-blue` overrides custom classes unpredictably. After two failed attempts with variant overrides, plain Links with exact classes work reliably.
-  - **Reversibility:** Easy — could refactor Button to use tailwind-merge or add a "custom" variant later.
+- **Use plain `<Link>` elements for CTA buttons instead of the `<Button>` component**
+  - Alternatives: Button with variant overrides
+  - Reason: Button's `clsx` in Tailwind v4 creates class conflicts where variant backgrounds override custom ones unpredictably. After two failed attempts, plain Links with exact classes work reliably.
+  - Reversibility: Easy — refactor Button to use tailwind-merge later.
 
-- **Decision:** Design fidelity before architecture refactoring
-  - **Alternatives:** Fix architecture first (CMS module, industry templates, etc.)
-  - **Reason:** User has a deadline to show pages this week. Architecture is internal; design is what stakeholders see.
-  - **Reversibility:** Easy — architecture work is independent.
+- **CTA button pattern**: `rounded-lg`, specific bg color, `shadow-[0_2px_0_0_rgba(0,0,0,0.85)]` bottom stroke
+  - Grey buttons: `bg-[#f4f5f7]`
+  - Blue buttons: `bg-brand-blue` with white text
+  - Gold buttons: `bg-[#e7c64a]`
+  - Light blue buttons: `bg-[#43c2ff]`
+  - This pattern is consistent across all sections.
 
-- **Decision:** Use forced `<br className="hidden md:inline" />` for text cascade line breaks
-  - **Alternatives:** Rely on `max-width` alone
-  - **Reason:** Font weight changes shift natural break points. After 6+ iterations in the previous session, forced breaks are the only reliable way to get exact line cascades.
-  - **Reversibility:** Easy to remove if responsive behavior needs changing.
+- **Design fidelity before architecture refactoring**
+  - Reason: Stakeholder demo this week. Architecture is internal; design is visible.
+  - Reversibility: Easy — architecture work is independent.
 
-- **Decision:** Use PNG for logo (not SVG)
-  - **Alternatives:** Wait for Figma SVG export
-  - **Reason:** PSD only has a rasterized "Vector Smart Object". 489×105 PNG at 3x is sharp enough.
-  - **Reversibility:** Swap the file later.
+- **PSD pt-to-px conversion uses ~2x multiplier**
+  - Validated empirically across 10+ sections. The PSD is retina (likely 144dpi).
 
-- **Decision:** Hero text colors use exact PSD hex values, not theme tokens
-  - **Alternatives:** Use `text-brand-blue` token
-  - **Reason:** PSD says `#116ea7` for headline (different from brand token `#036fa7`). PSD is authority per build brief hierarchy.
-  - **Reversibility:** Trivial CSS change.
+- **PSD "vertical" value = line-height** in pts, same 2x conversion.
 
-- **Decision:** PSD pt-to-px conversion uses ~2x multiplier
-  - **Alternatives:** 1.33x (72dpi→96dpi)
-  - **Reason:** Empirically validated — when we use 2x (e.g., 30pt → 60px), the rendered output matches the design screenshots the user provides. The PSD is likely at 144dpi or the designer uses retina artboards.
-  - **Reversibility:** N/A, it's a reference formula not a code choice.
+- **Icon PNGs include their containers** (translucent rounded rectangles are baked into the images, not CSS-generated)
+  - Learned after building a CSS container that duplicated what was already in the PNG.
 
-- **Decision:** The Shift section image has gold X baked into the PNG — no CSS clip-path or SVG overlay needed
-  - **Alternatives:** Clip-path polygon to cut photo into X shape; SVG X behind photo
-  - **Reason:** Both alternatives created white triangles cutting through the woman's face. The source PNG (910×900, RGBA) already composites the woman over the gold X correctly.
-  - **Reversibility:** N/A.
+- **SVG logo** replaced PNG in navbar (user provided vector from designer)
 
-- **Decision:** Performance CX section uses asymmetric padding (small top, large bottom) to push text toward top
-  - **Alternatives:** Centered vertical alignment with flexbox
-  - **Reason:** Design shows text in upper third with empty wave space below. Asymmetric padding is the simplest CSS approach.
-  - **Reversibility:** Trivial.
+- **Stats section uses single heading** — PSD shows "Performance, Measured" / "Inside Our Operation" once, with all 6 stats (2 rows of 3) below. No separate "What We Deliver" header.
+
+- **Executive Dashboard module added** to `sketch77/executive-dashboard` (separate repo, separate project). Monitors this website's GitHub activity + WordPress CMS health. Pushed to main on sketch77 account.
 
 ## 4. Architecture & Key Files
 
-### Files created/modified this session:
-- `src/components/layout/navbar.tsx` — **Modified**: CTA buttons restyled (rounded-lg, bg-[#f4f5f7], bottom shadow stroke, reduced height)
-- `src/components/sections/home/hero-section.tsx` — **Modified**: Replaced Button components with plain Link elements for below-wave CTAs. Added `Link` import, removed `Button` import.
-- `src/components/sections/home/the-shift-section.tsx` — **Rewrote content area**: Fixed typography to PSD specs, split body into two paragraphs, removed clip-path/SVG X, display PNG directly with object-contain, negative margins for full-height image, reduced section padding.
-- `src/components/sections/home/performance-cx-section.tsx` — **Rewrote**: Removed CTA buttons, left-aligned all text, asymmetric padding, increased heading to 72px, added proper spacing. Removed Button import.
-- `src/components/sections/home/solution-mapping-section.tsx` — **Rewrote**: Left-aligned heading with forced break, added arrow-most.png inline, replaced lucide icons with correct PNGs, constrained column text widths, pill-style View Services buttons. Removed lucide-react and Button imports.
-- `public/images/home/arrow-most.png` — **Created**: Arrow icon placed after "Most" in heading (copied from `~/Downloads/arrow-most@3x.png`, renders at 38px)
+### Files modified this session:
+- `src/components/sections/home/solution-mapping-section.tsx` — Fixed columns (gap-0, mb-1 icons, 230px title width, 280px desc width), added "Every solution..." statement block with down arrow, centered CTA buttons with nav styling
+- `src/components/sections/home/capabilities-section.tsx` — Centered header (60px/24px), full circular images (no clipping), correct copy, gold Learn More buttons, `min-h-[56px]` on titles
+- `src/components/sections/home/product-suite-section.tsx` — Removed lucide icons + Button import, PNG icons with overlay text/buttons inside, full-cover background, bigger icons (380×420), closing statement 28px semibold
+- `src/components/sections/home/stats-section.tsx` — Single heading, 2 rows of 3, blue bold values 60px, labels 30px medium, grey left borders
+- `src/components/sections/home/insights-lead-in-section.tsx` — **UNSTAGED** — Rewrote: two-column header, About/Performance Insights buttons, proven-outcomes-wave background, case study rows with 50px titles + fixed-size pills. Background position still needs fixing.
+- `src/components/layout/navbar.tsx` — Swapped logo from PNG to SVG
+- `public/logo-wordmark.svg` — **Created**: Vector logo from designer
+- `public/images/home/down-arrow.png` — **Created**: Arrow icon below "operating model" statement
 
-### Key existing files (unchanged):
+### Key existing files (unchanged this session):
 - `src/app/globals.css` — Brand tokens. Don't change.
-- `src/lib/wordpress.ts` — GraphQL client wrapper. Works but shallow (architecture candidate #1).
-- `src/lib/queries.ts` — All WP queries + types. Monolithic. Don't restructure during design pass.
-- `src/app/(marketing)/page.tsx` — Home page, assembles 9 section components.
-- `src/components/ui/button.tsx` — Polymorphic Button (renders Link when href provided). Has class conflict issues with Tailwind v4 — prefer plain Links for pixel-precise buttons.
+- `src/app/(marketing)/page.tsx` — Home page, assembles 9 sections: HomeHero, TheShiftSection, PerformanceCXSection, SolutionMappingSection, CapabilitiesSection, ProductSuiteSection, StatsSection, InsightsLeadInSection, FaqSection
+- `src/lib/wordpress.ts` — GraphQL client. Don't restructure.
+- `src/lib/queries.ts` — All WP queries. Don't restructure.
+- `src/components/ui/button.tsx` — Has class conflict issues. Use plain Links instead.
+- `public/images/home/operating-model-wave.png` — Gold wave for product suite section (1920×900px)
+- `public/images/home/proven-outcomes-wave.png` — Gold wave for insights/proven outcomes section
 - `.nvmrc` — Node 22
-- `public/logo-wordmark.png` — Real brand wordmark (489×105px, 3x)
-- `public/logo-white-new.png` — White symbol mark only (NOT wordmark). Unusable for footer.
-- `public/logo-colour.png` — Gold symbol mark only.
 
-### Don't touch yet:
-- `src/app/(marketing)/industries/automotive/content.tsx` — Hardcoded but working. Architecture fix deferred.
-- `src/lib/queries.ts` — Will be refactored later. Don't restructure during design pass.
-- `src/app/globals.css` — Brand tokens correct per brand sheet.
-- `next.config.ts` — Image remotePatterns configured for WP. Leave as-is.
+### Don't touch:
+- `src/app/globals.css` — Brand tokens correct per brand sheet
+- `src/lib/queries.ts` — Architecture candidate, deferred
+- `next.config.ts` — Image remotePatterns configured
+- `src/components/ui/button.tsx` — Works for non-pixel-precise uses; hero/nav/section buttons use plain Links intentionally
 
 ## 5. Gotchas & Hard-Won Knowledge
 
-- **Button component class conflicts**: The `Button` component uses `clsx` to compose variant + custom classes. In Tailwind v4, class order in source doesn't determine specificity — CSS generation order does. This means `variant="ghost"` adding `bg-transparent` can override your custom `bg-brand-blue` unpredictably. **Solution**: For pixel-precise buttons, use plain `<Link>` elements with all classes inline. Don't fight the Button component.
+- **Button component class conflicts**: Tailwind v4 CSS generation order ≠ source order. Variant classes from `clsx` can override custom classes unpredictably. Use plain `<Link>` elements for pixel-precise buttons.
 
-- **The Shift image PNG already has gold X composited in**: Previous attempts to add an X via CSS clip-path or SVG overlay created white triangles cutting through the woman's face. The PNG (910×900, RGBA with transparency) is the complete composition. Just display it with `object-contain`.
+- **Icon PNGs include their containers**: The product suite icons (`icon-qa.png`, `icon-training.png`, `icon-workforce.png`) have translucent rounded rectangles baked in. Don't add a CSS wrapper with `bg-white/65` — it doubles up.
 
-- **PSD pt sizes → px**: Multiply by ~2. This was validated empirically across multiple sections (7pt → 14px, 9pt → 18px, 12pt → 24px, 30pt → 60px, 34pt → 68px). The PSD appears to be at retina resolution.
+- **PSD pt × 2 = px**: Validated across all sections. 7pt→14px, 9pt→18px, 12pt→24px, 14pt→28px, 15pt→30px, 18pt→36px, 24pt→48px, 25pt→50px, 30pt→60px, 34pt→68px.
 
-- **PSD "vertical" value**: This is the line-height in pts. Same 2x conversion applies (e.g., 11pt vertical → 22px line-height).
+- **PSD "vertical" = line-height** in pts, same 2x.
 
-- **Node version**: Must use Node 22. Next.js 16 requires >=20.9.0. Run `nvm use 22`.
+- **Node 22 required**. `nvm use 22`. pnpm only.
 
-- **pnpm**: Must use pnpm. Install via `corepack enable && corepack prepare pnpm@latest --activate` if not available.
+- **Git credentials**: This repo (`knightfoxapps/itelligenceweb`) uses `RobertAinsworth77` gh account. The executive dashboard (`sketch77/executive-dashboard`) uses `sketch77` account. Switch with `gh auth switch --user <name>`.
 
-- **Text cascade via max-width is fragile**: Forced `<br className="hidden md:inline" />` breaks are more reliable than max-width for matching PSD line breaks.
+- **Text cascade via max-width is fragile**: Use forced `<br className="hidden md:inline" />` for exact PSD line breaks.
 
-- **WordPress is HTTP only** (`http://54.236.105.26/graphql`). Fine for dev (server-side), needs HTTPS before production.
+- **WordPress is HTTP only** (`http://54.236.105.26/graphql`). Fine for dev.
 
-- **Framer Motion animations start with `opacity: 0`** — elements invisible until JS hydrates. Known UX issue, not priority.
+- **Framer Motion opacity: 0 start** — elements invisible until JS hydrates. Known, not priority.
 
-- **Home page ignores CMS data** — ACF fields populated in WordPress but frontend hardcodes all copy. Connecting CMS is a future task.
+- **Background wave positioning**: The `proven-outcomes-wave.png` should cover only the "Proven Outcomes" / "Customer Lifecycle Intelligence at Scale" header area. It must NOT extend into the numbered case study rows below. Currently `h-[65%]` is too much.
 
-- **Hard px values for spacing are bad practice**: User explicitly called this out. Use Tailwind's spacing scale (mb-2, mb-6, mb-10, mb-14 etc.) for responsive-friendly spacing. Only use exact px for font-size and line-height where PSD specs demand it.
+- **capabilities-section title alignment**: Uses `min-h-[56px]` on h3 elements so all four column blurbs start at the same vertical line regardless of whether the title wraps to 1 or 2 lines.
 
-- **Authority hierarchy**: Brand guide → Design files (PSD mockups) → Wireframe/React export. When they conflict, higher wins.
-
-- **Git push blocked**: Remote uses credential for `sketch77` which lacks access to `knightfoxapps/itelligenceweb`. User must push.
+- **product-suite icons overlay**: Title and Explore button are `absolute bottom-8` inside a `relative` container wrapping the Image. The icon PNGs already have the translucent box, so text appears inside them.
 
 ## 6. Conventions In Play
 
-- **Tailwind v4** via `@tailwindcss/postcss` — uses `@theme inline` blocks in CSS, not `tailwind.config.js`
-- **Commit style:** Conventional commits (`fix:`, `feat:`, `rebuild:`)
-- **Component organization:** `src/components/ui/` (primitives), `src/components/sections/home/` (page-specific), `src/components/sections/shared/` (reusable), `src/components/layout/` (nav/footer)
-- **Route groups:** `(marketing)` for public pages, `(legal)` for legal pages
-- **No tests yet** — design phase. Architecture review identified this as future need.
-- **Copy rules:** Headlines are Title Case. Nearshore/Offshore/Onshore always capitalized.
-- **Button style pattern for this design**: `rounded-lg`, `bg-[#f4f5f7]` for light buttons, `shadow-[0_2px_0_0_rgba(0,0,0,0.7)]` for bottom stroke, blue glow via `shadow-[0_0_12px_2px_rgba(17,110,167,0.4)]` for primary CTAs
-- **PSD reference format**: When user gives specs, they provide: font family, weight, pt size, vertical (line-height) pt, color. Convert pt×2 for px values.
+- **Tailwind v4** via `@tailwindcss/postcss` — `@theme inline` blocks in CSS
+- **Commit style:** Conventional commits (`fix:`, `feat:`)
+- **Component organization:** `src/components/sections/home/` (page-specific sections)
+- **No tests** — design phase
+- **Copy rules:** Headlines Title Case. Nearshore/Offshore/Onshore always capitalized.
+- **Button style pattern**: `rounded-lg`, color-specific bg, `shadow-[0_2px_0_0_rgba(0,0,0,0.85)]` bottom stroke
+- **PSD reference format**: font family, weight, pt size, vertical (line-height) pt, color → convert pt×2 for px
+- **Use Tailwind spacing scale** for margins/padding (not hard px). Only use exact px for font-size and line-height.
+- **Authority hierarchy**: Brand guide → PSD mockups → Wireframe/export. Higher wins on conflicts.
 
 ## 7. Open Questions
 
-1. **Solution Mapping section columns**: Icons still too far from titles, first column title wraps to 3 lines. What max-width feels right? Need user to confirm after next adjustment.
-2. **Can the user export the white wordmark from PSD for the footer?** Current white logo is symbol-only.
-3. **Should `#116ea7` (PSD hero) or `#036fa7` (brand sheet) be the canonical brand-blue?** Needs brand team confirmation.
-4. **Is the wave position (`top-[15%]`) in the hero final?** User hasn't given final approval.
-5. **When will Figma SVG be available for the logo?**
-6. **What are the remaining homepage sections to style after Solution Mapping?** Need to compare the full-page PSD against current output to identify the sequence.
-7. **The "View Services" buttons in Solution Mapping** — the PSD reference shows these. Are the link destinations correct (engage, grow, retain solution pages)?
+1. **Background wave on "Proven Outcomes" section**: What exact coverage should it have? User showed it should cover the title area and fade before the numbered rows. Needs a height reduction from current `h-[65%]`.
+2. **FAQ section**: Not yet styled to PSD. What does it look like in the design?
+3. **Remaining sections below case studies**: Are there more sections after the numbered list (01–06) before the footer?
+4. **Footer**: Blocked on white wordmark logo. When will user export it?
+5. **Should `#116ea7` (PSD hero) or `#036fa7` (brand sheet) be canonical brand-blue?**
+6. **After homepage is done**: User wants to run wayfinder/grill-me/write-a-prd skills to create PRDs and GitHub issues for the broader project. These could tie into the executive dashboard.
 
 ## 8. Do Not Touch
 
-- **`src/app/globals.css` brand tokens** — Colors are correct per brand sheet.
-- **WordPress/CMS setup** — Working, don't reconfigure.
-- **`src/lib/queries.ts` structure** — Architecture candidate #1. Don't restructure during design pass.
-- **Industry/Solution page content** — Hardcoded copy is source-of-truth from copy docs.
-- **`next.config.ts` image remotePatterns** — Configured for WP image serving.
-- **`src/components/ui/button.tsx`** — Works fine for non-pixel-precise uses. Don't refactor to fix the hero/nav buttons; those use plain Links now and that's intentional.
-- **`package.json`** — Has an unstaged modification (likely the `packageManager` field auto-added by corepack). Don't commit unless user says to.
+- **`src/app/globals.css`** — Brand tokens are correct
+- **`src/lib/queries.ts`** — Architecture refactor deferred
+- **`next.config.ts`** — Image remotePatterns working
+- **`src/components/ui/button.tsx`** — Intentionally bypassed for section buttons
+- **WordPress CMS config** — Working, don't reconfigure
+- **Industry/Solution page content** — Hardcoded, not in scope
+- **`sketch77/executive-dashboard`** — Separate repo, itelligence module already pushed and working
 
 ## 9. Resume Command
 
-> Read `HANDOFF.md`. We're on branch `design/match-v2-mockups`. The immediate task is finishing the Solution Mapping section ("Start Where it Matters Most") — the icons need to be closer to the titles below them (reduce the gap), the title `max-w` needs to be wider (~230px) so "I want every interaction to count." fits on 2 lines not 3, and the columns should span the full viewport width more evenly. Reference image is `~/Downloads/Start Where.png`. After that, continue section-by-section down the homepage comparing against `~/Downloads/itelligenceCX_V2 Home d.jpg`. Do not restructure `queries.ts` or change brand tokens in `globals.css`. Confirm with user before touching anything outside the homepage sections.
+> Read `HANDOFF.md`. We're on branch `design/home-page-match`. There's one unstaged change in `insights-lead-in-section.tsx`. The immediate task is fixing the `proven-outcomes-wave.png` background — reduce its height so it covers only the header area ("Proven Outcomes" / "Customer Lifecycle Intelligence at Scale" + buttons) and does NOT bleed into the numbered case study rows below. Reference: the gold wave in the PSD fades out between the buttons and the first "01" row. After fixing that, commit all outstanding changes and push. Then continue section-by-section (FAQ section is next). Compare against the full-page PSD at `~/Downloads/itelligenceCX_V2 Home d.jpg`. Do not restructure `queries.ts` or change brand tokens in `globals.css`. Confirm with user before touching anything outside homepage sections.
