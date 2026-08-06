@@ -7,6 +7,7 @@ import { CapabilitiesSection } from "@/components/sections/home/capabilities-sec
 import { ProductSuiteSection } from "@/components/sections/home/product-suite-section";
 import { StatsSection } from "@/components/sections/home/stats-section";
 import { InsightsLeadInSection } from "@/components/sections/home/insights-lead-in-section";
+import { SectionBreak } from "@/components/sections/home/section-break";
 import { FaqSection } from "@/components/sections/home/faq-section";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function HomePage() {
       <ProductSuiteSection />
       <StatsSection />
       <InsightsLeadInSection />
+      <SectionBreak />
       <FaqSection />
     </main>
   );
